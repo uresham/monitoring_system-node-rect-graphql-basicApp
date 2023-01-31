@@ -1,0 +1,47 @@
+version: "3"
+services:
+       mongo:
+             container_name: mongo
+             image: mongo
+             volumes:
+               - ./data:/data/db
+             ports:
+               - '5432:5432'
+             networks:
+               - mynet
+       monitoring-app:
+             container_name: monitoring-app
+             image: latest123/monitoring-app
+             restart: always
+             build: .
+             ports:
+               - "4001:4001"
+             depends_on:
+               - mongo
+             links:
+               - mongo
+             environment:
+              - DB_HOST=mongo
+             networks:
+               - mynet
+       migration:
+             build:
+               context: .
+             command: >
+                sh -c "npm run migrate-down &&
+                       npm run migrate-down &&
+                       npm run migrate-down &&
+                       npm run migrate-down &&
+                       npm run migrate-up"
+             links:
+               - mongo
+             depends_on:
+               - mongo
+             networks:
+               - mynet
+             environment:
+               - DB_HOST=mongo
+            
+networks:
+  mynet:
+    name: mynet

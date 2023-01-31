@@ -1,0 +1,66 @@
+{
+  "name": "monitoring_system",
+  "version": "1.0.0",
+  "description": "REST API for a real-time monitoring system, to track number of votes given by viewers for each contestant, in a start-up themed reality show.",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "migrate-up": "migrate-mongo up",
+    "migrate-down": "migrate-mongo down",
+    "test": "APP=test jest --testTimeout=50000 --runInBand",
+    "test-coverage": "APP=test jest --testTimeout=50000 --runInBand --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uresham/rt-_monitoring_system_backend.git"
+  },
+  "author": "Uresha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uresham/rt-_monitoring_system_backend/issues"
+  },
+  "homepage": "https://github.com/uresham/rt-_monitoring_system_backend#readme",
+  "dependencies": {
+    "@graphql-tools/schema": "^9.0.13",
+    "apollo-server": "^3.11.1",
+    "apollo-server-core": "^3.11.1",
+    "body-parser": "^1.20.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "express-validator": "^6.14.2",
+    "graphql": "^15.8.0",
+    "graphql-subscriptions": "^2.0.0",
+    "graphql-tools": "^8.3.15",
+    "graphql-ws": "^5.11.2",
+    "graphql-yoga": "^3.3.0",
+    "http": "^0.0.1-security",
+    "jest": "^29.3.1",
+    "mongodb-memory-server": "^8.11.1",
+    "mongoose": "^6.8.3",
+    "subscriptions-transport-ws": "^0.11.0",
+    "supertest": "^6.3.3",
+    "ws": "^8.12.0"
+  },
+  "devDependencies": {
+    "migrate-mongo": "^9.0.0",
+    "nodemon": "^2.0.20"
+  },
+  "keywords": [],
+  "jest": {
+    "coverageReporters": [
+      "text",
+      "html"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/data/",
+      "/migrations/",
+      "/routes/",
+      "/validations/",
+      "app.js",
+      "/graphql/"
+    ],
+    "coverageDirectory": "./test/coverage"
+  }
+}
